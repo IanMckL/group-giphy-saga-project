@@ -48,7 +48,11 @@ const storeInstance = createStore(
   );
 
   function* rootSaga() {
+
+    yield takeEvery('FETCH_GIF', fetchGifs)
+
     yield takeEvery('LIKE_ITEM',likeSearchItem)
+
   }
 
 sagaMiddleware.run(rootSaga);
