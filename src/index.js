@@ -22,7 +22,7 @@ const storeInstance = createStore(
   );
 
   function* rootSaga() {
-    
+    yield takeEvery('FETCH_GIF', fetchGifs)
   }
 
 sagaMiddleware.run(rootSaga);
