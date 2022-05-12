@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import {useEffect} from 'react'
+import Search from '../Search/Search';
 
 function App() {
   useEffect(()=>{
@@ -12,7 +13,7 @@ function App() {
     console.log('in function getGifs')
     axios({
       method: 'GET',
-      url: '/giphy'
+      url: '/giphy/:'
     })
     .then((response)=>{
       console.log(response.data)
@@ -21,6 +22,7 @@ function App() {
   return (
     <div>
       <h1>Giphy Search!</h1>
+      <Search />
     </div>
   );
 }

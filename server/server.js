@@ -20,10 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('build'));
 
 // Routes
-app.get('/giphy', (req,res)=>{
+app.get(`/giphy/:tacocat`, (req,res)=>{
+  console.log(req.params.tacocat)
  axios({
     method: 'GET',
-    url: `http://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=50&rating=g`
+    url: `http://api.giphy.com/v1/gifs/search?q=${req.params.tacocat}&api_key=${API_KEY}&limit=10&rating=g`
  })
  .then((response)=>{
    res.send(response.data)
