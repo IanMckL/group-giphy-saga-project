@@ -1,5 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/App';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+import { put, takeEvery } from 'redux-saga/effects';
+import logger from 'redux-logger';
+import axios from 'axios';
+import App from './components/App/App.jsx';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+
+const sagaMiddleware = createSagaMiddleware();
+const storeInstance = createStore(
+    combineReducers({
+
+
+    }),
+    
+    // ⚡ TODO Apply Saga middleware:
+    applyMiddleware(logger, sagaMiddleware)
+  );
+
+  function* rootSaga() {
+    
+  }
+
+sagaMiddleware.run(rootSaga);
+
+ReactDOM.render(
+ <Provider store={storeInstance}>
+    <App />
+  </Provider>,
+document.getElementById('root'));
+
