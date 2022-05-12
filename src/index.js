@@ -10,6 +10,19 @@ import App from './components/App/App.jsx';
 
 
 
+function* likeSearchItem(action) {
+  const response = yield axios ({
+      method: 'POST',
+      url: `/giphy/${action.payload.id}`
+  })
+  console.log(response);
+  yield put({
+    type: ''
+    })
+}
+
+
+
 const sagaMiddleware = createSagaMiddleware();
 const storeInstance = createStore(
     combineReducers({
@@ -22,7 +35,7 @@ const storeInstance = createStore(
   );
 
   function* rootSaga() {
-    
+    yield takeEvery('LIKE_ITEM',likeSearchItem)
   }
 
 sagaMiddleware.run(rootSaga);
