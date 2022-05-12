@@ -8,11 +8,37 @@ import logger from 'redux-logger';
 import axios from 'axios';
 import App from './components/App/App.jsx';
 
+const gifList = (state=[], action) => {
+if(action.type === 'NEW_GIF_ARRAY'){
+  return action.payload
+}
+return state
+}
+const favoritesList = (state=[], action)=>{
+  if(action.type === 'SET_FAVORITE'){
+    return action.payload
+  }
+  return state
+}
+
+function* likeSearchItem(action) {
+  const response = yield axios ({
+      method: 'POST',
+      url: `/giphy/${action.payload.id}`
+  })
+  console.log(response);
+  yield put({
+    type: ''
+    })
+}
+
 
 
 const sagaMiddleware = createSagaMiddleware();
 const storeInstance = createStore(
     combineReducers({
+
+      gifList,
 
 
     }),
@@ -22,7 +48,11 @@ const storeInstance = createStore(
   );
 
   function* rootSaga() {
+
     yield takeEvery('FETCH_GIF', fetchGifs)
+
+    yield takeEvery('LIKE_ITEM',likeSearchItem)
+
   }
 
 sagaMiddleware.run(rootSaga);

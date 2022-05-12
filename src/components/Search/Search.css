@@ -1,0 +1,12 @@
+
+.longinput{
+    height: 4vh;
+    width: 20vw;
+    vertical-align: middle;
+}
+.searchbutton{
+    height:5vh;
+    width: 5vw;
+    vertical-align: middle;
+    font-size: 3vh;
+}
