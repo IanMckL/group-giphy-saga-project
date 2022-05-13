@@ -1,30 +1,26 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-
+import FavoriteItem from '../FavoriteItem/FavoriteItem';
 
 function FavoritesList() {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const favoritesList = useSelector((store) => store.favoritesList);
 
-    const favoritesList = useSelector(store => store.favoritesList);
-
-    return (
-        <>
-            {favoritesList &&
-                favoritesList.map((fav) => {
-                    return (
-                        <>
-                            <img src={fav.url}></img>
-                        </>
-                    )
-                })
-            }
-        </>
-
-
-
-    )
+  return (
+    <>
+      <ul>
+        {favoritesList &&
+          favoritesList.map((fav) => {
+            return (
+              <>
+                <FavoriteItem key={fav.id} fav={fav} />
+              </>
+            );
+          })}
+      </ul>
+    </>
+  );
 }
 
-export default FavoritesList
+export default FavoritesList;

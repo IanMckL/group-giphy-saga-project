@@ -13,57 +13,65 @@ import App from './components/App/App.jsx';
 function* fetchFavorites() {
   const response = yield axios({
     method: 'GET',
-    url: `/api/favorite`
+    url: `/api/favorite`,
   });
-  console.log('this is the response from favorites table:',response.data);
+  console.log('this is the response from favorites table:', response.data);
   yield put({
     type: 'SET_FAVORITE',
-    payload: response.data
-  })
+    payload: response.data,
+  });
 }
 
-
 function* likeSearchItem(action) {
-  console.log('this is the post payload:',action.payload);
+  console.log('this is the post payload:', action.payload);
   const response = yield axios({
     method: 'POST',
     url: `/api/favorite`,
-    data: {gif:action.payload}
-  })
+    data: { gif: action.payload },
+  });
   console.log(response);
   yield put({
-    type: 'FETCH_FAVORITES'
-  })
+    type: 'FETCH_FAVORITES',
+  });
 }
 
 function* fetchGifs(action) {
-
   const response = yield axios({
     method: 'GET',
-    url: `/giphy/${action.payload}`
+    url: `/giphy/${action.payload}`,
   });
 
   yield put({
     type: 'NEW_GIF_ARRAY',
-    payload: response.data
-  })
+    payload: response.data,
+  });
+}
+
+function* changeCategory(action) {
+  const response = yield axios({
+    method: 'PUT',
+    url: `/api/favorite/${action.payload.id}`,
+  });
+  yield put({
+    type: 'FETCH_FAVORITES',
+  });
 }
 
 //reducers------------------------------------------------------
 
 const gifList = (state = [], action) => {
   if (action.type === 'NEW_GIF_ARRAY') {
-    console.log('action.payload in NEW_GIF_ARRAY---->', action.payload)
-    return action.payload
-  }
-  return state
-}
-const favoritesList = (state = [], action) => {
-  if (action.type === 'SET_FAVORITE') {
-    return action.payload
+    console.log('action.payload in NEW_GIF_ARRAY---->', action.payload);
+    return action.payload;
   }
   return state;
-}
+};
+const favoritesList = (state = [], action) => {
+  if (action.type === 'SET_FAVORITE') {
+    return action.payload;
+  }
+  return state;
+};
 
 //store---------------------------------------------------------
 
@@ -71,18 +79,19 @@ const sagaMiddleware = createSagaMiddleware();
 const storeInstance = createStore(
   combineReducers({
     gifList,
-    favoritesList
+    favoritesList,
   }),
 
-// middleware-------------------------------------------------
+  // middleware-------------------------------------------------
   applyMiddleware(logger, sagaMiddleware)
 );
 
 //roots-------------------------------------------------------------
 function* rootSaga() {
-  yield takeEvery('GET_GIFS', fetchGifs)
-  yield takeEvery('LIKE_GIF', likeSearchItem)
-  yield takeEvery('FETCH_FAVORITES', fetchFavorites)
+  yield takeEvery('GET_GIFS', fetchGifs);
+  yield takeEvery('LIKE_GIF', likeSearchItem);
+  yield takeEvery('FETCH_FAVORITES', fetchFavorites);
+  yield takeEvery('CHANGE_CATEGORY', changeCategory);
 }
 
 sagaMiddleware.run(rootSaga);
@@ -91,5 +100,5 @@ ReactDOM.render(
   <Provider store={storeInstance}>
     <App />
   </Provider>,
-  document.getElementById('root'));
-
+  document.getElementById('root')
+);
