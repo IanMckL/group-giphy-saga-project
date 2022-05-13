@@ -54,7 +54,7 @@ function* fetchFavorites() {
     method: 'GET',
     url: `/api/favorite`
   });
-  console.log(response.data);
+  console.log('this is the response from favorites table:',response.data);
   yield put({
     type: 'SET_FAVORITE',
     payload: response.data
@@ -63,10 +63,11 @@ function* fetchFavorites() {
 
 
 function* likeSearchItem(action) {
+  console.log('this is the post payload:',action.payload);
   const response = yield axios({
     method: 'POST',
     url: `/api/favorite`,
-    data: action.payload
+    data: {gif:action.payload}
   })
   console.log(response);
   yield put({
@@ -98,9 +99,9 @@ const gifList = (state = [], action) => {
 }
 const favoritesList = (state = [], action) => {
   if (action.type === 'SET_FAVORITE') {
-    return action.payload.url
+    return action.payload
   }
-  return state
+  return state;
 }
 
 //store---------------------------------------------------------

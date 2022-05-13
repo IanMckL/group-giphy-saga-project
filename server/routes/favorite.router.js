@@ -8,22 +8,24 @@ router.get('/', (req, res) => {
   const queryText = `SELECT * FROM "favorites";
   `;
   pool.query(queryText)
-  .then((result) => { res.send(result.rows); })
+  .then((result) => {
+    console.log('these are the rows:',result.rows);
+    res.send(result.rows); })
   .catch((err) => {
     console.log('error getting gif from database', err);
     res.sendStatus(500);
   })
-  res.sendStatus(200);
 });
 
 // add a new favorite
 router.post('/', (req, res) => {
   const gif = req.body;
+  console.log('this is the req dot body:',gif.gif);
   const queryText = `INSERT INTO "favorites" ("url")
-  VALUES ('$1');
+  VALUES ($1);
   `;
   const queryValues = [
-    gif
+    gif.gif
   ];
   pool.query(queryText, queryValues)
   .then(()=> { res.sendStatus(200); })

@@ -15,7 +15,7 @@ function FavoritesList() {
                 favoritesList.map((fav) => {
                     return (
                         <>
-                            <img src={fav}></img>
+                            <img src={fav.url}></img>
                         </>
                     )
                 })
