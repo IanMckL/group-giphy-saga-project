@@ -3,16 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 
-function FavoritesList(){
+function FavoritesList() {
 
     const dispatch = useDispatch();
 
     const favoritesList = useSelector(store => store.favoritesList);
 
-    return(
-        <ul>
-            {favoritesList.map(fav) }
-        </ul>
+    return (
+        <>
+            {favoritesList &&
+                favoritesList.map((fav) => {
+                    return (
+                        <>
+                            <img src={fav}></img>
+                        </>
+                    )
+                })
+            }
+        </>
+
+
+
     )
 }
 
