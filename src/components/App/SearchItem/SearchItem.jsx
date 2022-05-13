@@ -2,8 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-
-
 function SearchItem(gif) {
 
     const dispatch = useDispatch();
@@ -11,15 +9,18 @@ function SearchItem(gif) {
     const likeItem= ()=> {
         dispatch({
             type:'LIKE_GIF',
-            payload: gif
+            payload: gif.gif
             
         })
 
     }
 
     return (
+        
+        
         <div>
-            {gif}
+         
+            <img src={gif.gif}></img>
             <button onClick={likeItem}>❤️</button>
         </div>
     )

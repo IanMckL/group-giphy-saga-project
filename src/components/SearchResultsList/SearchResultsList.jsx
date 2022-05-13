@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import SearchItem from '../App/SearchItem/SearchItem';
 
 function SearchResultsList() {
 
@@ -26,7 +27,7 @@ function SearchResultsList() {
 
             return(
               <>
-                <img src={gif.images.fixed_height.url}></img>
+                <SearchItem gif={gif.images.fixed_height.url} />
               </>
             )
           })
