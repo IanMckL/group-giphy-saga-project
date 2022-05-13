@@ -22,16 +22,16 @@ return state
 //   return state
 // }
 
-// function* likeSearchItem(action) {
-//   const response = yield axios ({
-//       method: 'POST',
-//       url: `/giphy/${action.payload.id}`
-//   })
-//   console.log(response);
-//   yield put({
-//     type: ''
-//     })
-// }
+function* likeSearchItem(action) {
+  const response = yield axios ({
+      method: 'POST',
+      url: `/giphy/${action.payload.id}`
+  })
+  console.log(response);
+  yield put({
+    type: 'NEW_GIF_ARRAY'
+    })
+}
 
  function* fetchGifs(action){
    
@@ -45,9 +45,6 @@ return state
       type: 'NEW_GIF_ARRAY',
       payload: response.data
     })
-  
-    
-  
 
  }
 
