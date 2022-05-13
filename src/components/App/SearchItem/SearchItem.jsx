@@ -11,6 +11,7 @@ function SearchItem(gif) {
     const likeItem= ()=> {
         dispatch({
             type:'LIKE_GIF'
+            
         })
 
     }
