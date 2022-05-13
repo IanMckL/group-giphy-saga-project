@@ -10,17 +10,18 @@ function SearchItem(gif) {
 
     const likeItem= ()=> {
         dispatch({
-            type:'LIKE_GIF'
+            type:'LIKE_GIF',
+            payload: gif
             
         })
 
     }
 
     return (
-        <li>
+        <div>
             {gif}
             <button onClick={likeItem}>❤️</button>
-        </li>
+        </div>
     )
 }
 
