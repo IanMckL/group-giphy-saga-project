@@ -3,24 +3,41 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 function SearchResultsList() {
+
+   
     const dispatch = useDispatch();
 
     const [gif, setGif] = useState([]);
-
+    const gifList = useSelector((store)=>store.gifList)
     const handleSubmit = () => {
         dispatch({
             type: 'FETCH_GIF'
         })
     }
 
+    
+   
   return (
-    <div>
-      <div>
-        <input type='text' value={gif} onChange={(event) => setGif(event.target.value)} />
-        <button onClick={handleSubmit}>Search</button>
-      </div>
-    </div>
-  );
+    <>
+        { gifList.data &&
+
+
+          gifList.data.map((gif)=>{
+
+            return(
+              <>
+                <img src={gif.images.fixed_height.url}></img>
+              </>
+            )
+          })
+        
+        
+        }
+      </>
+        
+      
+   
+  )
 }
 
 export default SearchResultsList;
