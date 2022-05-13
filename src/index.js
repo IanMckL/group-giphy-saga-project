@@ -13,8 +13,7 @@ import App from './components/App/App.jsx';
 const sagaMiddleware = createSagaMiddleware();
 const storeInstance = createStore(
     combineReducers({
-
-
+      gifList,
     }),
     
     // ⚡ TODO Apply Saga middleware:

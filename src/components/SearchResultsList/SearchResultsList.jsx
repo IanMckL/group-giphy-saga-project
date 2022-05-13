@@ -5,6 +5,8 @@ import { useState } from 'react';
 function SearchResultsList() {
     const dispatch = useDispatch();
 
+    const gifList = useSelector((store) => store.gifList);
+
     const [gif, setGif] = useState([]);
 
     const handleSubmit = () => {
@@ -15,10 +17,11 @@ function SearchResultsList() {
 
   return (
     <div>
-      <div>
-        <input type='text' value={gif} onChange={(event) => setGif(event.target.value)} />
-        <button onClick={handleSubmit}>Search</button>
-      </div>
+     <ul>
+         {gifList.map((gif) => {
+             return <
+         })}
+     </ul>
     </div>
   );
 }
