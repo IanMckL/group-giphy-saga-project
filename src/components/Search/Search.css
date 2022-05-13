@@ -10,3 +10,18 @@
     vertical-align: middle;
     font-size: 3vh;
 }
+
+.nav-to-fav{
+    display: inline-block;
+}
+.searchbar{
+    display: inline-block;
+    margin-right: 15vw;
+}
+
+.nav-button{
+    height:5vh;
+    width: 15vw;
+    vertical-align: middle;
+    font-size: 3vh;
+}
