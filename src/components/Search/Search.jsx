@@ -32,7 +32,11 @@ const goToHome = () => {
 
 
 const goToFav = () =>{
+    dispatch({
+        type:'FETCH_FAVORITES'
+    })
     history.push('/favlist')
+    
 }
 return(
 <div className="Search">

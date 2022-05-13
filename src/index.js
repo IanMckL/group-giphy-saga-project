@@ -8,45 +8,7 @@ import logger from 'redux-logger';
 import axios from 'axios';
 import App from './components/App/App.jsx';
 
-const gifList = (state=[], action) => {
-if(action.type === 'NEW_GIF_ARRAY'){
-  console.log('action.payload in NEW_GIF_ARRAY---->', action.payload)
-  return action.payload
-}
-return state
-}
-const favoritesList = (state=[], action)=>{
-  if(action.type === 'SET_FAVORITE'){
-    return action.payload
-  }
-  return state
-}
 
-function* likeSearchItem(action) {
-  const response = yield axios ({
-      method: 'POST',
-      url: `/giphy/${action.payload.id}`
-  })
-  console.log(response);
-  yield put({
-    type: 'NEW_GIF_ARRAY'
-    })
-}
-
- function* fetchGifs(action){
-   
-
-   const response = yield axios({
-    method: 'GET',
-    url: `/giphy/${action.payload}`
-    });
-  
-    yield put({
-      type: 'NEW_GIF_ARRAY',
-      payload: response.data
-    })
-
- }
 //sagas--------------------------------------------
 
 function* fetchFavorites() {

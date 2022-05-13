@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import './FavoritesList.css'
 
 
 
@@ -10,7 +11,7 @@ function FavoritesList() {
     const favoritesList = useSelector(store => store.favoritesList);
 
     return (
-        <>
+        <div className= "favoritesList">
             {favoritesList &&
                 favoritesList.map((fav) => {
                     return (
@@ -20,7 +21,7 @@ function FavoritesList() {
                     )
                 })
             }
-        </>
+        </div>
 
 
 

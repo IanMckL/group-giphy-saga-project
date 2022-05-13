@@ -1,0 +1,14 @@
+
+
+.favoritesList{
+    /* background-color: rgb(171, 220, 171); */
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    margin: 2em;
+
+}
+
+/* body{
+    background-color: rgb(171, 220, 171);
+
+} */
